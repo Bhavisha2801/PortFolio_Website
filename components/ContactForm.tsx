@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaWhatsapp, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FaWhatsapp, FaInstagram, FaLinkedin, FaEnvelope, FaPhone } from 'react-icons/fa';
 
 export default function ContactMe() {
   const phone_number = process.env.PHONE_NUMBER;
+  const email = process.env.EMAIL_ADDRESS; // Make sure to set this in your environment variables
 
   return (
     <div className="bg-white px-6 py-32 sm:py-40 lg:px-8 relative overflow-hidden" id="contact">
@@ -41,6 +42,22 @@ export default function ContactMe() {
               rel="noopener noreferrer"
             >
               <FaLinkedin className="h-10 w-10 transition duration-300 transform hover:scale-110" aria-hidden="true" />
+            </Link>
+            <Link
+              href={`mailto:${email}`}
+              className="text-gray-500 hover:text-red-600"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaEnvelope className="h-10 w-10 transition duration-300 transform hover:scale-110" aria-hidden="true" />
+            </Link>
+            <Link
+              href={`tel:${phone_number}`}
+              className="text-gray-500 hover:text-blue-600"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaPhone className="h-10 w-10 transition duration-300 transform hover:scale-110" aria-hidden="true" />
             </Link>
           </div>
         </div>
