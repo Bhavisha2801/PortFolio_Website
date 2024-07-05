@@ -50,7 +50,7 @@ export function ThreeDCardDemo() {
               >
                 {/* Adjust height and width as needed */}
                 <Image
-                  src="/Bhavisha_Nayi.png"
+                  src="/images/resume.png"
                   height="1000"
                   width="1000"
                   className="h-full w-full object-cover rounded-xl group-hover/card:shadow-xl"
