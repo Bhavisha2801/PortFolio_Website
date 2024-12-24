@@ -1,131 +1,144 @@
+
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
+import type { NextPage } from "next";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
 import { cn } from "@/utils/cn";
-import { TypewriterEffectSmooth } from "./ui/TypewriterEffect";
 
-export function LampDemo() {
-  const words = [
-    { text: "Hello" },
-    { text: "I'm" },
-    { text: "Bhavisha" },
-    { text: "Nayi" },
-    {
-      text: "Full",
-      className: "text-cyan-500 dark:text-cyan-500",
-    },
-    {
-      text: "Stack",
-      className: "text-cyan-500 dark:text-cyan-500",
-    },
-    {
-      text: "Web",
-      className: "text-cyan-500 dark:text-cyan-500",
-    },
-    {
-      text: "Developer",
-      className: "text-cyan-500 dark:text-cyan-500",
-    },
-    { text: "Based" },
-    { text: "In" },
-    { text: "India." },
-  ];
+export const BackgroundCellAnimation = () => {
+return (
+  <div className="relative h-full p-28 bg-slate-950 flex justify-center overflow-hidden z-0">
+    <BackgroundCellCore />
+    <div className="relative z-50 mt-10 pointer-events-none select-none">
+    <h1 className="sm:text-lg md:text-4xl lg:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-400 pointer-events-none">
+  Hello I am Bhavisha Nayi
+  <p className="text-orange-400" >Full Stack Web Developer</p>
+  Based In India.  
+</h1>
+    </div>
+  </div>
+);
+};
 
-  return (
-    <LampContainer>
-      <motion.h1
-        initial={{ opacity: 0.5, y: 100 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{
-          delay: 0.3,
-          duration: 0.8,
-          ease: "easeInOut",
+const BackgroundCellCore = () => {
+const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+const ref = useRef<any>(null);
+
+const handleMouseMove = (event: any) => {
+  const rect = ref.current && ref.current.getBoundingClientRect();
+  setMousePosition({
+    x: event.clientX - rect.left,
+    y: event.clientY - rect.top,
+  });
+};
+
+const size = 300;
+return (
+  <div
+    ref={ref}
+    onMouseMove={handleMouseMove}
+    className="h-full absolute inset-0"
+  >
+    <div className="absolute h-[20rem] inset-y-0  overflow-hidden">
+      <div className="absolute h-full w-full pointer-events-none -bottom-2 z-40 bg-slate-950 [mask-image:linear-gradient(to_bottom,transparent,black)]"></div>
+      <div
+        className="absolute inset-0 z-20 bg-transparent"
+        style={{
+          maskImage: `radial-gradient(
+            ${size / 4}px circle at center,
+           white, transparent
+          )`,
+          WebkitMaskImage: `radial-gradient(
+          ${size / 4}px circle at center,
+          white, transparent
+        )`,
+          WebkitMaskPosition: `${mousePosition.x - size / 2}px ${
+            mousePosition.y - size / 2
+          }px`,
+          WebkitMaskSize: `${size}px`,
+          maskSize: `${size}px`,
+          pointerEvents: "none",
+          maskRepeat: "no-repeat",
+          WebkitMaskRepeat: "no-repeat",
         }}
-        className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
       >
-        <TypewriterEffectSmooth words={words} />
-      </motion.h1>
-    </LampContainer>
-  );
-}
+        <Pattern cellClassName="border-blue-600 relative z-[100]" />
+      </div>
+      <Pattern className="opacity-[0.5]" cellClassName="border-neutral-700" />
+    </div>
+  </div>
+);
+};
 
-export const LampContainer = ({
-  children,
+const Pattern = ({
   className,
-}: {
-  children: React.ReactNode;
+  cellClassName,
+  }: {
   className?: string;
+  cellClassName?: string;
 }) => {
+  const x = new Array(47).fill(0);
+  const y = new Array(30).fill(0);
+  const matrix = x.map((_, i) => y.map((_, j) => [i, j]));
+  const [clickedCell, setClickedCell] = useState<any>(null);
+
+  const controls = useAnimation();
+
+  const clickCell = (rowIdx : any, colIdx : any) => {
+      if (clickedCell) {
+        const distance = Math.sqrt(
+          Math.pow(clickedCell[0] - rowIdx, 2) +
+            Math.pow(clickedCell[1] - colIdx, 2)
+        );
+        controls.start({
+          opacity: [0, 1 - distance * 0.1, 0],
+          transition: { duration: distance * 0.2 },
+        });
+      }
+    }
+
   return (
-    <div
-      className={cn(
-        "relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-slate-950 w-full rounded-md z-0",
-        className
-      )}
-    >
-      <div className="relative flex w-full flex-1 scale-y-125 items-center justify-center isolate z-0">
-        <motion.div
-          initial={{ opacity: 0.5, width: "15rem" }}
-          whileInView={{ opacity: 1, width: "30rem" }}
-          transition={{
-            delay: 0.3,
-            duration: 0.8,
-            ease: "easeInOut",
-          }}
-          style={{
-            backgroundImage: `conic-gradient(var(--conic-position), var(--tw-gradient-stops))`,
-          }}
-          className="absolute inset-auto right-1/2 h-56 overflow-visible w-[30rem] bg-gradient-conic from-cyan-500 via-transparent to-transparent text-white [--conic-position:from_70deg_at_center_top]"
+    <div className={cn("flex flex-row  relative z-30", className)}>
+      {matrix.map((row, rowIdx) => (
+        <div
+          key={`matrix-row-${rowIdx}`}
+          className="flex flex-col  relative z-20 border-b"
         >
-          <div className="absolute w-[100%] left-0 bg-slate-950 h-40 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
-          <div className="absolute w-40 h-[100%] left-0 bg-slate-950 bottom-0 z-20 [mask-image:linear-gradient(to_right,white,transparent)]" />
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0.5, width: "15rem" }}
-          whileInView={{ opacity: 1, width: "30rem" }}
-          transition={{
-            delay: 0.3,
-            duration: 0.8,
-            ease: "easeInOut",
-          }}
-          style={{
-            backgroundImage: `conic-gradient(var(--conic-position), var(--tw-gradient-stops))`,
-          }}
-          className="absolute inset-auto left-1/2 h-56 w-[30rem] bg-gradient-conic from-transparent via-transparent to-cyan-500 text-white [--conic-position:from_290deg_at_center_top]"
-        >
-          <div className="absolute w-40 h-[100%] right-0 bg-slate-950 bottom-0 z-20 [mask-image:linear-gradient(to_left,white,transparent)]" />
-          <div className="absolute w-[100%] right-0 bg-slate-950 h-40 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
-        </motion.div>
-        <div className="absolute top-1/2 h-48 w-full translate-y-12 scale-x-150 bg-slate-950 blur-2xl"></div>
-        <div className="absolute top-1/2 z-50 h-48 w-full bg-transparent opacity-10 backdrop-blur-md"></div>
-        <div className="absolute inset-auto z-50 h-36 w-[28rem] -translate-y-1/2 rounded-full bg-cyan-500 opacity-50 blur-3xl"></div>
-        <motion.div
-          initial={{ width: "8rem" }}
-          whileInView={{ width: "16rem" }}
-          transition={{
-            delay: 0.3,
-            duration: 0.8,
-            ease: "easeInOut",
-          }}
-          className="absolute inset-auto z-30 h-36 w-64 -translate-y-[6rem] rounded-full bg-cyan-400 blur-2xl"
-        ></motion.div>
-        <motion.div
-          initial={{ width: "15rem" }}
-          whileInView={{ width: "30rem" }}
-          transition={{
-            delay: 0.3,
-            duration: 0.8,
-            ease: "easeInOut",
-          }}
-          className="absolute inset-auto z-50 h-0.5 w-[30rem] -translate-y-[7rem] bg-cyan-400"
-        ></motion.div>
+          {row.map((column, colIdx) => {
 
-        <div className="absolute inset-auto z-40 h-44 w-full -translate-y-[12.5rem] bg-slate-950"></div>
-      </div>
+clickCell(rowIdx, colIdx)
 
-      <div className="relative z-50 flex -translate-y-80 flex-col items-center px-5">
-        {children}
-      </div>
+            return (
+              <div
+                key={`matrix-col-${colIdx}`}
+                className={cn(
+                  "bg-transparent border-l border-b border-neutral-600",
+                  cellClassName
+                )}
+                onClick={() => setClickedCell([rowIdx, colIdx])}
+              >
+                <motion.div
+                  initial={{
+                    opacity: 0,
+                  }}
+                  whileHover={{
+                    opacity: [0, 1, 0.5],
+                  }}
+                  transition={{
+                    duration: 0.5,
+                    ease: "backOut",
+                  }}
+                  animate={controls}
+                 className="bg-[rgba(14,165,233,0.3)] h-12 w-12" //  rgba(14, 165, 233, 0.15) for a more subtle effect
+                ></motion.div>
+              </div>
+            );
+          })}
+        </div>
+      ))}
     </div>
   );
 };
+
+

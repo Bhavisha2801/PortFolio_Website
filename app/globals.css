@@ -12,6 +12,12 @@
     }
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 .pdf-document {
   max-width: 100%;
   height: auto;
@@ -26,3 +32,4 @@
     transform: translateY(-10px);
   }
 }
+

@@ -68,7 +68,7 @@ const Projects = () => {
   };
 
   return (
-    <section className="text-white body-font md:px-40 lg:px-40 px-20 mb-20" id="projects">
+    <section className="text-white body-font md:px-40 sm:px-4 mb-20" id="projects">
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-wrap w-full mb-10">
           <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
