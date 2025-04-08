@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { FaGithub, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
-import { BiLocationPlus } from 'react-icons/bi';
+import { FaLocationDot } from "react-icons/fa6";
 
 export default function Footer() {
   const phone_number = process.env.PHONE_NUMBER;
@@ -16,7 +16,7 @@ export default function Footer() {
               <div className="text-2xl font-bold text-white">Bhavisha Nayi</div>
             </Link>
             <p className="mt-4 text-sm flex justify-center md:justify-start gap-1">
-              <BiLocationPlus className="h-4 w-4" /> Vadodara, Gujarat
+              <FaLocationDot className="h-4 w-4" /> Vadodara, Gujarat
             </p>
           </div>
           {/* Social Media Links */}
