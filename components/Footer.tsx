@@ -16,7 +16,7 @@ export default function Footer() {
               <div className="text-2xl font-bold text-white">Bhavisha Nayi</div>
             </Link>
             <p className="mt-4 text-sm flex justify-center md:justify-start gap-1">
-              <BiLocationPlus className="h-4 w-4" /> Ahmedabad, Gujarat
+              <BiLocationPlus className="h-4 w-4" /> Vadodara, Gujarat
             </p>
           </div>
           {/* Social Media Links */}
