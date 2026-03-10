@@ -196,7 +196,7 @@ portfolio/
 Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/portfolio.git
+git clone https://github.com/Bhavisha2801/PortFolio_Website.git
 ```
 
 Install dependencies
@@ -243,13 +243,13 @@ Steps:
 Frontend Developer
 
 📧 Email  
-bhavishatest@yopmail.com  
+nayibhavisha@gmail.com  
 
 💻 GitHub  
 https://github.com/Bhavisha2801  
 
 💼 LinkedIn  
-(Add your LinkedIn)
+https://www.linkedin.com/in/bhavisha-nayi-2b683a211/
 
 ---
 
