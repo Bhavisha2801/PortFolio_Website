@@ -5,7 +5,7 @@ import React from "react";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 import Link from "next/link";
 
-export function ThreeDCardDemo() {
+export function CV() {
   return (
     <div className="md:px-8 lg:px-40 px-4" id="cv">
       <div className="container px-4 sm:px-8 py-8 mx-auto">

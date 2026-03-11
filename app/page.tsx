@@ -5,6 +5,7 @@ import { Hero } from "@/components/HeroSection/Hero";
 import { CV } from "@/components/CV";
 import Projects from "@/components/projects";
 import { Skills } from "@/components/skills";
+import ContactMe from "@/components/ContactForm";
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
       <CV />
       <Projects />
       <Skills />
-      <Example />
+      <ContactMe />
     </main>
   );
 }
