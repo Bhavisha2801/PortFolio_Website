@@ -1,18 +1,18 @@
 'use client'
 
 import Example from "@/components/ContactForm";
-import { BackgroundCellAnimation } from "@/components/Lamp";
-import { ThreeDCardDemo } from "@/components/card";
+import { Hero } from "@/components/HeroSection/Hero";
+import { CV } from "@/components/CV";
 import Projects from "@/components/projects";
-import { CardHoverEffectDemo } from "@/components/skills";
+import { Skills } from "@/components/skills";
 
 export default function Home() {
   return (
     <main className="m-0 p-0">
-      <BackgroundCellAnimation />
-      <ThreeDCardDemo />
+      <Hero />
+      <CV />
       <Projects />
-      <CardHoverEffectDemo />
+      <Skills />
       <Example />
     </main>
   );
