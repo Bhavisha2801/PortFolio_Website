@@ -53,15 +53,6 @@ const Projects = () => {
       description: "Implemented a React-based interactive project to manage ball positions dynamically using state management. Demonstrated proficiency in handling React states and rendering.",
     },
     {
-      title: "Dadoji",
-      imgSrc: "/images/dadoji.png",
-      link: "https://www.dadoji.com/",
-      githubLink: "",
-      techStack: "Wix | Velo",
-      features: "Temple Overview | Historical Information | Amenities | Gallery | Things to Do | Location | Contact Form",
-      description: "Developed a website for Dadoji Temple using Wix Editor and Velo code. Designed the layout and implemented custom functionality to enhance the user experience.",
-    },
-    {
       title: "Rock-Paper-Scissors",
       imgSrc: "/images/rock-paper-scissors.png",
       link: "https://bhavisha2801.github.io/rock-paper-scissors/",
