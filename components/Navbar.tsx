@@ -16,18 +16,77 @@ function NavbarComp({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null);
 
   /**
+   * Smoothly scroll to a section without adding
+   * #section-name to the browser URL.
+   */
+  const scrollToSection = (sectionId: string) => {
+    setActive(null);
+
+    const section = document.getElementById(sectionId);
+
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+
+      // Remove any existing hash from URL
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname
+      );
+    }
+  };
+
+  /**
    * Select a project from the navbar dropdown
    * and open it inside the Projects section.
    */
   const handleProjectClick = (projectId: string) => {
-    // Close navbar dropdown
     setActive(null);
 
-    // Notify Projects component
+    // Tell Projects component which project to open
     window.dispatchEvent(
       new CustomEvent("select-portfolio-project", {
         detail: projectId,
       })
+    );
+
+    // Scroll to Projects section
+    const projectsSection = document.getElementById("projects");
+
+    if (projectsSection) {
+      projectsSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+
+    // Remove hash from URL
+    window.history.replaceState(
+      null,
+      "",
+      window.location.pathname
+    );
+  };
+
+  /**
+   * Scroll to top for Home
+   */
+  const handleHomeClick = () => {
+    setActive(null);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    // Remove hash if any
+    window.history.replaceState(
+      null,
+      "",
+      window.location.pathname
     );
   };
 
@@ -39,12 +98,14 @@ function NavbarComp({ className }: { className?: string }) {
       )}
     >
       <Menu setActive={setActive}>
+
         {/* Home */}
         <MenuItem
           setActive={setActive}
           active={active}
           item="Home"
           linkVal=""
+          onClick={handleHomeClick}
         />
 
         {/* CV */}
@@ -52,7 +113,8 @@ function NavbarComp({ className }: { className?: string }) {
           setActive={setActive}
           active={active}
           item="CV"
-          linkVal="#cv"
+          linkVal=""
+          onClick={() => scrollToSection("cv")}
         />
 
         {/* Projects */}
@@ -60,9 +122,11 @@ function NavbarComp({ className }: { className?: string }) {
           setActive={setActive}
           active={active}
           item="Projects"
-          linkVal="#projects"
+          linkVal=""
+          onClick={() => scrollToSection("projects")}
         >
           <div className="w-[420px] rounded-2xl border border-white/10 bg-slate-950/95 p-3 shadow-2xl backdrop-blur-xl">
+
             {/* Header */}
             <div className="mb-3 flex items-center justify-between px-1">
               <div>
@@ -82,6 +146,7 @@ function NavbarComp({ className }: { className?: string }) {
 
             {/* Projects Grid */}
             <div className="grid grid-cols-2 gap-2">
+
               {/* ElwoTools */}
               <button
                 type="button"
@@ -169,16 +234,7 @@ function NavbarComp({ className }: { className?: string }) {
             <div className="mt-3 border-t border-white/10 pt-2 text-center">
               <button
                 type="button"
-                onClick={() => {
-                  setActive(null);
-
-                  document
-                    .getElementById("projects")
-                    ?.scrollIntoView({
-                      behavior: "smooth",
-                      block: "start",
-                    });
-                }}
+                onClick={() => scrollToSection("projects")}
                 className="text-[10px] font-medium text-slate-500 transition-colors hover:text-indigo-400"
               >
                 View all projects →
@@ -192,7 +248,8 @@ function NavbarComp({ className }: { className?: string }) {
           setActive={setActive}
           active={active}
           item="Skills"
-          linkVal="#skills"
+          linkVal=""
+          onClick={() => scrollToSection("skills")}
         />
 
         {/* Contact */}
@@ -200,8 +257,10 @@ function NavbarComp({ className }: { className?: string }) {
           setActive={setActive}
           active={active}
           item="Contact Me"
-          linkVal="#contact"
+          linkVal=""
+          onClick={() => scrollToSection("contact")}
         />
+
       </Menu>
     </div>
   );
