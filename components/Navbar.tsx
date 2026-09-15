@@ -43,83 +43,120 @@ function NavbarComp({ className }: { className?: string }) {
           item="Projects"
           linkVal="#projects"
         >
-          {/* Projects Dropdown */}
-          <div className="w-[620px] rounded-2xl border border-white/10 bg-slate-950/95 p-5 shadow-2xl backdrop-blur-xl">
+          <div className="w-[420px] rounded-2xl border border-white/10 bg-slate-950/95 p-3 shadow-2xl backdrop-blur-xl">
             
             {/* Header */}
-            <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-3">
+            <div className="mb-3 flex items-center justify-between px-1">
               <div>
-                <p className="text-sm font-semibold text-white">
+                <p className="text-xs font-semibold text-white">
                   Featured Projects
                 </p>
-
-                <p className="mt-0.5 text-xs text-slate-400">
-                  A few things I&apos;ve built
+                <p className="text-[10px] text-slate-500">
+                  Selected work
                 </p>
               </div>
-
-              <span className="rounded-full border border-indigo-400/20 bg-indigo-400/10 px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-indigo-300">
-                Portfolio
+        
+              <span className="rounded-full bg-indigo-500/10 px-2 py-1 text-[9px] font-medium text-indigo-400">
+                4 Projects
               </span>
             </div>
-
-            {/* Projects */}
-            <div className="grid grid-cols-2 gap-3">
-              
+        
+            {/* Projects Grid */}
+            <div className="grid grid-cols-2 gap-2">
+        
               {/* ElwoTools */}
-              <div className="group rounded-xl border border-white/5 bg-white/[0.04] p-2 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-400/30 hover:bg-white/[0.08]">
-                <ProductItem
-                  title="ElwoTools"
-                  href="https://www.elwotools.se/"
-                  src="/images/elwotools.png"
-                  description="Product, cart and Admin Panel development."
-                />
-              </div>
-
-              {/* ApnaDesk */}
-              <div className="relative rounded-xl border border-indigo-400/30 bg-indigo-500/[0.08] p-2 transition-all duration-300 hover:-translate-y-1 hover:border-indigo-400/60 hover:bg-indigo-500/[0.14]">
-                <span className="absolute right-2 top-2 z-10 rounded-full bg-indigo-500 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-white shadow-lg">
-                  Featured
+              <a
+                href="https://www.elwotools.se/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.04] p-2.5 transition-all duration-200 hover:border-emerald-400/30 hover:bg-white/[0.08]"
+              >
+                <div className="h-11 w-14 shrink-0 overflow-hidden rounded-lg bg-white">
+                  <img
+                    src="/images/elwotools.png"
+                    alt="ElwoTools"
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+        
+                <span className="truncate text-xs font-medium text-slate-200 transition-colors group-hover:text-white">
+                  ElwoTools
                 </span>
-
-                <ProductItem
-                  title="ApnaDesk"
-                  href="https://apna-desk-nk5ulk1t2-bhavisha2801s-projects.vercel.app/"
-                  src="/images/apnadesk.png"
-                  description="SaaS customer management platform with dynamic forms, notes and files."
-                />
-              </div>
-
+              </a>
+        
+              {/* ApnaDesk */}
+              <a
+                href="https://apna-desk-nk5ulk1t2-bhavisha2801s-projects.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 rounded-xl border border-indigo-400/20 bg-indigo-500/[0.08] p-2.5 transition-all duration-200 hover:border-indigo-400/50 hover:bg-indigo-500/[0.14]"
+              >
+                <div className="h-11 w-14 shrink-0 overflow-hidden rounded-lg bg-white">
+                  <img
+                    src="/images/apnadesk.png"
+                    alt="ApnaDesk"
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+        
+                <div className="min-w-0">
+                  <span className="block truncate text-xs font-semibold text-white">
+                    ApnaDesk
+                  </span>
+        
+                  <span className="text-[9px] text-indigo-400">
+                    Featured
+                  </span>
+                </div>
+              </a>
+        
               {/* PostIt */}
-              <div className="group rounded-xl border border-white/5 bg-white/[0.04] p-2 transition-all duration-300 hover:-translate-y-1 hover:border-violet-400/30 hover:bg-white/[0.08]">
-                <ProductItem
-                  title="PostIt"
-                  href="https://postit-prompts.vercel.app/"
-                  src="/images/postit.png"
-                  description="Full-stack prompt sharing application."
-                />
-              </div>
-
+              <a
+                href="https://postit-prompts.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.04] p-2.5 transition-all duration-200 hover:border-violet-400/30 hover:bg-white/[0.08]"
+              >
+                <div className="h-11 w-14 shrink-0 overflow-hidden rounded-lg bg-white">
+                  <img
+                    src="/images/postit.png"
+                    alt="PostIt"
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+        
+                <span className="truncate text-xs font-medium text-slate-200 transition-colors group-hover:text-white">
+                  PostIt
+                </span>
+              </a>
+        
               {/* Apollo Pharmacy */}
-              <div className="group rounded-xl border border-white/5 bg-white/[0.04] p-2 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/30 hover:bg-white/[0.08]">
-                <ProductItem
-                  title="Apollo Pharmacy"
-                  href="https://apolloclone.netlify.app/doctors"
-                  src="/images/apollo.png"
-                  description="Healthcare platform with dynamic data and responsive UI."
-                />
-              </div>
+              <a
+                href="https://apolloclone.netlify.app/doctors"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.04] p-2.5 transition-all duration-200 hover:border-blue-400/30 hover:bg-white/[0.08]"
+              >
+                <div className="h-11 w-14 shrink-0 overflow-hidden rounded-lg bg-white">
+                  <img
+                    src="/images/apollo.png"
+                    alt="Apollo Pharmacy"
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+        
+                <span className="text-xs font-medium leading-tight text-slate-200 transition-colors group-hover:text-white">
+                  Apollo Pharmacy
+                </span>
+              </a>
+        
             </div>
-
+        
             {/* Footer */}
-            <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-3">
-              <span className="text-[11px] text-slate-500">
-                React • Next.js • TypeScript • Node.js
-              </span>
-
+            <div className="mt-3 border-t border-white/10 pt-2 text-center">
               <a
                 href="#projects"
-                className="text-xs font-medium text-indigo-400 transition-colors hover:text-indigo-300"
+                className="text-[10px] font-medium text-slate-500 transition-colors hover:text-indigo-400"
               >
                 View all projects →
               </a>
