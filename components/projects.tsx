@@ -24,7 +24,7 @@ const Projects = () => {
     {
       title: "ApnaDesk",
       imgSrc: "/images/apnadesk.png",
-      link: "https://apna-desk-nk5ulk1t2-bhavisha2801s-projects.vercel.app/",
+      link: "https://apnadesk.vercel.app/",
       githubLink: "https://github.com/Bhavisha2801/apnadesk",
       techStack:
         "Next.js | TypeScript | Node.js | MongoDB | Redux Toolkit | Tailwind CSS",
