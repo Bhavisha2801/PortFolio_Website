@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Menu, MenuItem, ProductItem } from "./ui/navbar-menu";
+import { Menu, MenuItem } from "./ui/navbar-menu";
 import { cn } from "@/utils/cn";
 
 export function Navbar() {
@@ -15,6 +15,22 @@ export function Navbar() {
 function NavbarComp({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null);
 
+  /**
+   * Select a project from the navbar dropdown
+   * and open it inside the Projects section.
+   */
+  const handleProjectClick = (projectId: string) => {
+    // Close navbar dropdown
+    setActive(null);
+
+    // Notify Projects component
+    window.dispatchEvent(
+      new CustomEvent("select-portfolio-project", {
+        detail: projectId,
+      })
+    );
+  };
+
   return (
     <div
       className={cn(
@@ -23,6 +39,7 @@ function NavbarComp({ className }: { className?: string }) {
       )}
     >
       <Menu setActive={setActive}>
+        {/* Home */}
         <MenuItem
           setActive={setActive}
           active={active}
@@ -30,6 +47,7 @@ function NavbarComp({ className }: { className?: string }) {
           linkVal=""
         />
 
+        {/* CV */}
         <MenuItem
           setActive={setActive}
           active={active}
@@ -37,6 +55,7 @@ function NavbarComp({ className }: { className?: string }) {
           linkVal="#cv"
         />
 
+        {/* Projects */}
         <MenuItem
           setActive={setActive}
           active={active}
@@ -44,32 +63,30 @@ function NavbarComp({ className }: { className?: string }) {
           linkVal="#projects"
         >
           <div className="w-[420px] rounded-2xl border border-white/10 bg-slate-950/95 p-3 shadow-2xl backdrop-blur-xl">
-            
             {/* Header */}
             <div className="mb-3 flex items-center justify-between px-1">
               <div>
                 <p className="text-xs font-semibold text-white">
                   Featured Projects
                 </p>
+
                 <p className="text-[10px] text-slate-500">
                   Selected work
                 </p>
               </div>
-        
+
               <span className="rounded-full bg-indigo-500/10 px-2 py-1 text-[9px] font-medium text-indigo-400">
                 4 Projects
               </span>
             </div>
-        
+
             {/* Projects Grid */}
             <div className="grid grid-cols-2 gap-2">
-        
               {/* ElwoTools */}
-              <a
-                href="https://www.elwotools.se/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.04] p-2.5 transition-all duration-200 hover:border-emerald-400/30 hover:bg-white/[0.08]"
+              <button
+                type="button"
+                onClick={() => handleProjectClick("elwotools")}
+                className="group flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.04] p-2.5 text-left transition-all duration-200 hover:border-emerald-400/30 hover:bg-white/[0.08]"
               >
                 <div className="h-11 w-14 shrink-0 overflow-hidden rounded-lg bg-white">
                   <img
@@ -78,18 +95,17 @@ function NavbarComp({ className }: { className?: string }) {
                     className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
-        
+
                 <span className="truncate text-xs font-medium text-slate-200 transition-colors group-hover:text-white">
                   ElwoTools
                 </span>
-              </a>
-        
+              </button>
+
               {/* ApnaDesk */}
-              <a
-                href="https://apna-desk-nk5ulk1t2-bhavisha2801s-projects.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-3 rounded-xl border border-indigo-400/20 bg-indigo-500/[0.08] p-2.5 transition-all duration-200 hover:border-indigo-400/50 hover:bg-indigo-500/[0.14]"
+              <button
+                type="button"
+                onClick={() => handleProjectClick("apnadesk")}
+                className="group relative flex items-center gap-3 rounded-xl border border-indigo-400/20 bg-indigo-500/[0.08] p-2.5 text-left transition-all duration-200 hover:border-indigo-400/50 hover:bg-indigo-500/[0.14]"
               >
                 <div className="h-11 w-14 shrink-0 overflow-hidden rounded-lg bg-white">
                   <img
@@ -98,24 +114,23 @@ function NavbarComp({ className }: { className?: string }) {
                     className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
-        
+
                 <div className="min-w-0">
                   <span className="block truncate text-xs font-semibold text-white">
                     ApnaDesk
                   </span>
-        
+
                   <span className="text-[9px] text-indigo-400">
                     Featured
                   </span>
                 </div>
-              </a>
-        
+              </button>
+
               {/* PostIt */}
-              <a
-                href="https://postit-prompts.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.04] p-2.5 transition-all duration-200 hover:border-violet-400/30 hover:bg-white/[0.08]"
+              <button
+                type="button"
+                onClick={() => handleProjectClick("postit")}
+                className="group flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.04] p-2.5 text-left transition-all duration-200 hover:border-violet-400/30 hover:bg-white/[0.08]"
               >
                 <div className="h-11 w-14 shrink-0 overflow-hidden rounded-lg bg-white">
                   <img
@@ -124,18 +139,17 @@ function NavbarComp({ className }: { className?: string }) {
                     className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
-        
+
                 <span className="truncate text-xs font-medium text-slate-200 transition-colors group-hover:text-white">
                   PostIt
                 </span>
-              </a>
-        
+              </button>
+
               {/* Apollo Pharmacy */}
-              <a
-                href="https://apolloclone.netlify.app/doctors"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.04] p-2.5 transition-all duration-200 hover:border-blue-400/30 hover:bg-white/[0.08]"
+              <button
+                type="button"
+                onClick={() => handleProjectClick("apollo")}
+                className="group flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.04] p-2.5 text-left transition-all duration-200 hover:border-blue-400/30 hover:bg-white/[0.08]"
               >
                 <div className="h-11 w-14 shrink-0 overflow-hidden rounded-lg bg-white">
                   <img
@@ -144,26 +158,36 @@ function NavbarComp({ className }: { className?: string }) {
                     className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
-        
+
                 <span className="text-xs font-medium leading-tight text-slate-200 transition-colors group-hover:text-white">
                   Apollo Pharmacy
                 </span>
-              </a>
-        
+              </button>
             </div>
-        
+
             {/* Footer */}
             <div className="mt-3 border-t border-white/10 pt-2 text-center">
-              <a
-                href="#projects"
+              <button
+                type="button"
+                onClick={() => {
+                  setActive(null);
+
+                  document
+                    .getElementById("projects")
+                    ?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                }}
                 className="text-[10px] font-medium text-slate-500 transition-colors hover:text-indigo-400"
               >
                 View all projects →
-              </a>
+              </button>
             </div>
           </div>
         </MenuItem>
 
+        {/* Skills */}
         <MenuItem
           setActive={setActive}
           active={active}
@@ -171,6 +195,7 @@ function NavbarComp({ className }: { className?: string }) {
           linkVal="#skills"
         />
 
+        {/* Contact */}
         <MenuItem
           setActive={setActive}
           active={active}
